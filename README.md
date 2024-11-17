@@ -3,17 +3,17 @@ Uygulama içinde karanlık moda geçiş yapılabilir.
 Uygulama İngilizce ve Türkçe desteği mevcuttur.
 Projede MVVM ile RxSwift beraber kullanılmıştır.
 
-UYGULAMA ÖZET GİF
-![UYGULAMA ÖZET]([https://example.com/yeniozellikler.png](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/run.gif))
+# UYGULAMA ÖZET GİF
+![UYGULAMA ÖZET](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/run.gif)
 
 
-KARANLIK MODU
-![Kütüphane Görünümü]([https://example.com/yeniozellikler.png](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_dark.png))
-![Profil Görünümü]([https://example.com/yeniozellikler.png](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_dark.png))
+# KARANLIK MODU
+![Kütüphane Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_dark.png)   ![Profil Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_dark.png)
 
-GÜNDÜZ MODU
-![Kütüphane Görünümü]([https://example.com/yeniozellikler.png](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_light.png))
-![Profil Görünümü]([https://example.com/yeniozellikler.png](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_light.png))
+
+# GÜNDÜZ MODU
+![Kütüphane Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_light.png)  ![Profil Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_light.png)
+
 
 
 

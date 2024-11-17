@@ -6,7 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		134E4AE62CEA0EC10001D32B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 134E4AE52CEA0EC10001D32B /* RxCocoa */; };
+		134E4AE82CEA0EC10001D32B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 134E4AE72CEA0EC10001D32B /* RxSwift */; };
+		134E4B1C2CEA52F90001D32B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134E4B1A2CEA52F90001D32B /* Localizable.strings */; };
+		13DA9D382CE8DD48002FB65F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13DA9D372CE8DD48002FB65F /* SDWebImage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		134E4B1B2CEA52F90001D32B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		134E4B232CEA54690001D32B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13E6C0932CE3DE4500D758F5 /* KitapKosesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitapKosesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134E4AE82CEA0EC10001D32B /* RxSwift in Frameworks */,
+				134E4AE62CEA0EC10001D32B /* RxCocoa in Frameworks */,
+				13DA9D382CE8DD48002FB65F /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +57,7 @@
 		13E6C08A2CE3DE4500D758F5 = {
 			isa = PBXGroup;
 			children = (
+				134E4B1A2CEA52F90001D32B /* Localizable.strings */,
 				13E6C0952CE3DE4500D758F5 /* KitapKosesi */,
 				13E6C0942CE3DE4500D758F5 /* Products */,
 			);
@@ -78,6 +91,9 @@
 			);
 			name = KitapKosesi;
 			packageProductDependencies = (
+				13DA9D372CE8DD48002FB65F /* SDWebImage */,
+				134E4AE52CEA0EC10001D32B /* RxCocoa */,
+				134E4AE72CEA0EC10001D32B /* RxSwift */,
 			);
 			productName = KitapKosesi;
 			productReference = 13E6C0932CE3DE4500D758F5 /* KitapKosesi.app */;
@@ -104,9 +120,14 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 13E6C08A2CE3DE4500D758F5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				13DA9D362CE8DD48002FB65F /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				134E4AE42CEA0EC10001D32B /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 13E6C0942CE3DE4500D758F5 /* Products */;
 			projectDirPath = "";
@@ -122,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134E4B1C2CEA52F90001D32B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +159,18 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		134E4B1A2CEA52F90001D32B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				134E4B1B2CEA52F90001D32B /* en */,
+				134E4B232CEA54690001D32B /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		13E6C0AA2CE3DE4700D758F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -150,7 +184,6 @@
 				INFOPLIST_FILE = KitapKosesi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -160,6 +193,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kadirgorgun.KitapKosesi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -178,7 +215,6 @@
 				INFOPLIST_FILE = KitapKosesi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -188,6 +224,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kadirgorgun.KitapKosesi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -199,6 +239,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -262,6 +303,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -335,6 +377,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		134E4AE42CEA0EC10001D32B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+		13DA9D362CE8DD48002FB65F /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		134E4AE52CEA0EC10001D32B /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134E4AE42CEA0EC10001D32B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		134E4AE72CEA0EC10001D32B /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134E4AE42CEA0EC10001D32B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		13DA9D372CE8DD48002FB65F /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13DA9D362CE8DD48002FB65F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 13E6C08B2CE3DE4500D758F5 /* Project object */;
 }

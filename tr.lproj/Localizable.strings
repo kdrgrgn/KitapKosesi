@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  KitapKosesi
+
+  Created by Kadir on 17.11.2024.
+  
+*/
+
+"appName" = "Kitap Köşesi";
+"library" = "Kütüphane";
+"profile" = "Profile";
+"favorites" = "Favoriler";
+"toDarkMode" = "Gece Moduna Geç";
+"toLightMode" = "Gündüz Moduna Geç";
+"english" = "İngilizce";
+"turkish" = "Türkçe";
+"language" = "Dil";

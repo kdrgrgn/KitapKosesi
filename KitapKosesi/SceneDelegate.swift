@@ -16,7 +16,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        startApp()
+        
+    }
+    
+    func startApp(){
+        window?.overrideUserInterfaceStyle = UserDefaults.standard.bool(forKey: darkModeKey) ? .dark : .light
+
+
+        // TabBarController oluştur
+             let tabBarController = UITabBarController()
+             
+             // İlk sekme için navigation controller ve görünüm denetleyici
+        let firstNavigationController = UINavigationController(rootViewController: LibraryViewController())
+        firstNavigationController.tabBarItem = UITabBarItem(title: "library".localized(), image: UIImage(named: "LibraryIcon"), tag: 0)
+             
+             // İkinci sekme için navigation controller ve görünüm denetleyici
+             let secondNavigationController = UINavigationController(rootViewController: AccountViewController())
+        secondNavigationController.tabBarItem = UITabBarItem(title: "profile".localized(), image: UIImage(systemName: "person.circle"), tag: 1)
+        tabBarController.tabBar.tintColor = .textColor
+        tabBarController.tabBar.unselectedItemTintColor = .systemTextColor
+        tabBarController.view.backgroundColor = .primaryColor
+        tabBarController.tabBar.backgroundColor = .tabBarColor
+             
+             // TabBarController’a navigation controller'ları ekle
+             tabBarController.viewControllers = [firstNavigationController, secondNavigationController]
+             
+             // TabBarController'ı ana pencereye ata
+             window?.rootViewController = tabBarController
+        
+        
+        
+  
+
+         window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  KitapKosesi
+
+  Created by Kadir on 17.11.2024.
+  
+*/
+
+"appName" = "Book Corner";
+"library" = "Library";
+"profile" = "Profile";
+"favorites" = "Favorites";
+"toDarkMode" = "Switch to Dark Mode";
+"toLightMode" = "Switch to Light Mode";
+"english" = "English";
+"turkish" = "Turkish";
+"language" = "Language";

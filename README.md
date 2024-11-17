@@ -3,23 +3,25 @@ Uygulama içinde karanlık moda geçiş yapılabilir.
 Uygulama İngilizce ve Türkçe desteği mevcuttur.
 Projede MVVM ile RxSwift beraber kullanılmıştır.
 
+
+
 # UYGULAMA ÖZET GİF
-![UYGULAMA ÖZET](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/run.gif)
+<img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/run.gif" alt="Resim Açıklaması" width="300" height="500">
 
 
 # KARANLIK MODU
-![Kütüphane Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_dark.png)   ![Profil Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_dark.png)
+<img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_dark.png" alt="Resim Açıklaması" width="300" height="500">  <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_dark.png" alt="Resim Açıklaması" width="300" height="500">
+
 
 
 # GÜNDÜZ MODU
-![Kütüphane Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_light.png)  ![Profil Görünümü](https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_light.png)
+<img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_light.png" alt="Resim Açıklaması" width="300" height="500"> <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_light.png" alt="Resim Açıklaması" width="300" height="500">
 
 
 
 
 
-
-GELECEK ÖZELLİKLER
+# GELECEK ÖZELLİKLER
 * Kitap arama özelliği
 * Kitap favoriye ekleme ve silme
 * Kütüphane sayfası için sayfalama yapısı

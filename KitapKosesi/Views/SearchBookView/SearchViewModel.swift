@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class LibraryViewModel {
+class SearchViewModel {
     let books = BehaviorSubject<[BookModel]>(value: [])
     let homeLoading : PublishSubject<Bool> = PublishSubject()
     let pageLoading : PublishSubject<Bool> = PublishSubject()
@@ -19,7 +19,7 @@ class LibraryViewModel {
     
     
     
-    func getBooks (isReset: Bool = false){
+    func getBooks (isReset: Bool = false, search: String = "a"){
         
         
         if(isReset) {
@@ -35,7 +35,7 @@ class LibraryViewModel {
         }
         
         NetworkManager.shared.request(urlString: "volumes", model: BookListModel.self
-                                      ,queryParams: ["q": "a" , "maxResults" : 20,"startIndex" : tempBook.count]) { result in
+                                      ,queryParams: ["q":(search).isEmpty ? "a" : search, "maxResults" : 20,"startIndex" : tempBook.count]) { result in
             if(tempBook.isEmpty){
                 self.homeLoading.onNext(false)
 
@@ -70,8 +70,8 @@ class LibraryViewModel {
     
     
     func  resetPagination(){
-        books.onNext([])
-        isLastPage = false
+        self.books.onNext([])
+        self.isLastPage = false
         
     }
     

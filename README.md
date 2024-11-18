@@ -22,7 +22,5 @@ Projede MVVM ile RxSwift beraber kullanılmıştır.
 
 
 # GELECEK ÖZELLİKLER
-* Kitap arama özelliği
 * Kitap favoriye ekleme ve silme
-* Kütüphane sayfası için sayfalama yapısı
 * Kitapların içeriğini detayları ile beraber görme

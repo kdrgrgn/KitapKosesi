@@ -6,11 +6,12 @@
 //
 
 import UIKit
-
+protocol AppBarViewDelegate : UIViewController {}
 
 class AppBarView : UIView {
     
-    
+    weak var delegate: AppBarViewDelegate?
+
     
     private  let appTitleLable : AppLabel = {
         let label = AppLabel(style: .head)
@@ -23,6 +24,11 @@ class AppBarView : UIView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "SearchIcon")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 32),
+            imageView.heightAnchor.constraint(equalToConstant: 32)
+        ])
+        imageView.isUserInteractionEnabled = true
         
         return imageView
         
@@ -47,7 +53,8 @@ class AppBarView : UIView {
         titleRow.addArrangedSubview(searchIcon)
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleRow)
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(directSearchBook))
+        searchIcon.addGestureRecognizer(tapGesture)
         // Auto Layout ile titleRow'u hizala
           NSLayoutConstraint.activate([
               titleRow.topAnchor.constraint(equalTo: topAnchor),
@@ -61,6 +68,11 @@ class AppBarView : UIView {
      required init?(coder: NSCoder) {
          super.init(coder: coder)
      }
+    
+    @objc func directSearchBook() {
+        delegate?.navigationController?.pushViewController(SearchViewController(), animated: true)
+
+    }
  
 }
 

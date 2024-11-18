@@ -23,6 +23,11 @@ class NetworkManager {
 
         // Eğer query parametreleri varsa, URL'ye ekliyoruz
         if let queryParams = queryParams {
+            
+            for (key, value) in queryParams {
+                print("\(key): \(value)")
+            }
+            
             if  method == .get{
                 urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
             }
@@ -75,7 +80,6 @@ class NetworkManager {
             do {
           
                     let decodedData = try JSONDecoder().decode(T.self, from: data)
-                debugPrint("Decoded Response: \(decodedData)")
 
 
                 completion(.success(decodedData))

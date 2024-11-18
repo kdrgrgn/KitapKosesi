@@ -47,3 +47,22 @@ extension String {
         return String(format: self.localized(), arguments: arguments)
     }
 }
+
+
+extension UICollectionView {
+    func checkPagination() -> Bool {
+        if contentSize.height == 0 {
+                 return false
+             }
+        return contentOffset.y >= (contentSize.height - bounds.size.height)
+    }
+}
+
+extension UITableView {
+    func checkPagination() -> Bool {
+        if contentSize.height == 0 {
+                 return false
+             }
+        return contentOffset.y >= (contentSize.height - bounds.size.height)
+    }
+}

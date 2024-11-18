@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController, AppBarViewDelegate {
     let appTitle = AppBarView()
     
     
@@ -68,6 +68,8 @@ class AccountViewController: UIViewController {
         
  
         let container = AppContainer(view: row)
+        container.isUserInteractionEnabled = true
+
 
         return container
         
@@ -113,7 +115,7 @@ class AccountViewController: UIViewController {
         let viewModeView = AppContainer(view: viewModeRow)
         
    
-        
+        appTitle.delegate = self
         view.addSubview(appTitle)
         view.addSubview(viewModeView)
         view.addSubview(favoriteView)
@@ -125,7 +127,6 @@ class AccountViewController: UIViewController {
           
         languageView.addGestureRecognizer(tapGesture)
           
-        languageView.isUserInteractionEnabled = true
 
 
         

@@ -9,14 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LibraryViewController: UIViewController, UIScrollViewDelegate, AppBarViewDelegate{
+class SearchViewController: UIViewController, UIScrollViewDelegate{
     
     
     var collectionView: UICollectionView!
     var books = Array<BookModel>()
-    let libraryVM = LibraryViewModel()
+    let searchVM = SearchViewModel()
     let disposeBag = DisposeBag()
-    let appTitle = AppBarView()
+
 
 
 
@@ -47,54 +47,86 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, AppBarViewD
     }()
     
     
-    
+    private let searchTextField : UITextField = {
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.placeholder = "makeSearch".localized()
+        
+        field.translatesAutoresizingMaskIntoConstraints = false
+
+        return field
+    }()
+
+    override func viewDidAppear(_ animated: Bool) {
+        searchTextField.becomeFirstResponder()
+    }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appTitle.delegate = self
-        view.addSubview(appTitle)
+        
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: bookListLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         collectionView.register(BookItemCell.self, forCellWithReuseIdentifier: BookItemCell.reuseIdentifier)
-        view.addSubview(collectionView)
 
         
+        navigationItem.title = "findYourBook".localized()
+        
+        view.addSubview(collectionView)
+        view.addSubview(searchTextField)
+        
         indicatorView.center = view.center
+        paginationIndicatorView.frame = CGRect(x:screenWidth/2 - 12, y: screenHeight-125 , width: 24, height: 24)
+
         view.addSubview(indicatorView)
-        paginationIndicatorView.frame = CGRect(x:screenWidth/2 - 12, y: screenHeight - 125 , width: 24, height: 24)  
         view.addSubview(paginationIndicatorView)
+
         
         NSLayoutConstraint.activate([
-            appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            appTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            appTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            collectionView.topAnchor.constraint(equalTo: appTitle.bottomAnchor, constant: 20),
+            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-//            paginationIndicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100),
-//            paginationIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  20),
-//            paginationIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
             
         ])
-        
         setupBindings()
-        libraryVM.getBooks()
     }
 
     private func setupBindings(){
         
-        libraryVM.homeLoading.bind(to: self.indicatorView.rx.isAnimating).disposed(by: disposeBag)
+        searchVM.homeLoading.bind(to: self.indicatorView.rx.isAnimating).disposed(by: disposeBag)
         
-        libraryVM.pageLoading.bind(to: self.paginationIndicatorView.rx.isAnimating).disposed(by: disposeBag)
+        searchVM.pageLoading.bind(to: self.paginationIndicatorView.rx.isAnimating).disposed(by: disposeBag)
+        
+        searchTextField.rx.text.orEmpty
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)  // 500ms gecikme
+            .distinctUntilChanged()
+            .flatMapLatest { query -> Observable<Void> in
+                
+                guard !query.isEmpty else {
+                        self.searchVM.getBooks(isReset: true)
+
+                    return .just(())
+                }
+
+                self.searchVM.getBooks(isReset: true, search: query)
+                return .just(())
+            }
+            .subscribe(onNext: { _ in
+                // Burada API çağrısı tamamlandığında yapılacak işlemler
+   
+            })
+            .disposed(by: disposeBag)
 
         
-        libraryVM.books.bind(to: collectionView.rx.items(cellIdentifier: BookItemCell.reuseIdentifier, cellType: BookItemCell.self)) {row, item, cell in
+        searchVM.books.bind(to: collectionView.rx.items(cellIdentifier: BookItemCell.reuseIdentifier, cellType: BookItemCell.self)) {row, item, cell in
             cell.setBook = item
 
         }.disposed(by: disposeBag)
@@ -104,8 +136,8 @@ class LibraryViewController: UIViewController, UIScrollViewDelegate, AppBarViewD
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if(self.collectionView.checkPagination()) {
-            if !libraryVM.isLastPage && !paginationIndicatorView.isAnimating  && !indicatorView.isAnimating{
-                libraryVM.getBooks();
+            if !searchVM.isLastPage && !paginationIndicatorView.isAnimating  && !indicatorView.isAnimating{
+                searchVM.getBooks(search: searchTextField.text ?? "");
               }
           }
     }

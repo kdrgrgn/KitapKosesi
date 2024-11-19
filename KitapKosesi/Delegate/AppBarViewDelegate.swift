@@ -1,0 +1,1 @@
+protocol AppBarViewDelegate : UIViewController {}

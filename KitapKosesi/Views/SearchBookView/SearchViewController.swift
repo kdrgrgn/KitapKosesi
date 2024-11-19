@@ -9,11 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: UIViewController, UIScrollViewDelegate{
+class SearchViewController: BaseViewController, UIScrollViewDelegate{
     
     
     var collectionView: UICollectionView!
-    var books = Array<BookModel>()
     let searchVM = SearchViewModel()
     let disposeBag = DisposeBag()
 
@@ -65,14 +64,13 @@ class SearchViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        setTitle("findYourBook".localized())
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: bookListLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         collectionView.register(BookItemCell.self, forCellWithReuseIdentifier: BookItemCell.reuseIdentifier)
 
         
-        navigationItem.title = "findYourBook".localized()
         
         view.addSubview(collectionView)
         view.addSubview(searchTextField)

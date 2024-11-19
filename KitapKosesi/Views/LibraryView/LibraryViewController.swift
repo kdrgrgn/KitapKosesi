@@ -9,11 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LibraryViewController: UIViewController, UIScrollViewDelegate, AppBarViewDelegate{
+class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarViewDelegate{
     
     
     var collectionView: UICollectionView!
-    var books = Array<BookModel>()
     let libraryVM = LibraryViewModel()
     let disposeBag = DisposeBag()
     let appTitle = AppBarView()

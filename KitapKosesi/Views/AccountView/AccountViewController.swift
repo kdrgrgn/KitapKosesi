@@ -7,10 +7,11 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, AppBarViewDelegate {
+class AccountViewController: BaseViewController, AppBarViewDelegate {
     let appTitle = AppBarView()
     
     
+
  
     
     private  let favoriteView : AppContainer = {
@@ -23,7 +24,7 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
         title.text = "favorites".localized()
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "ArrowNext")
+        imageView.image = .arrowNext
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -35,6 +36,10 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
         favoriteRow.addArrangedSubview(title)
         favoriteRow.addArrangedSubview(imageView)
         
+        NSLayoutConstraint.activate([
+            favoriteRow.heightAnchor.constraint(equalToConstant: 20),
+
+        ])
  
         let container = AppContainer(view: favoriteRow)
 
@@ -45,6 +50,7 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
     
     
     private  let languageView : AppContainer = {
+        var languages = [DropDownModel(name: "turkish".localized(), key: "tr"),DropDownModel(name: "english".localized(), key: "en")]
         let row = UIStackView()
         row.axis = .horizontal
         row.translatesAutoresizingMaskIntoConstraints = false
@@ -54,27 +60,42 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
         title.text = UserDefaults.standard.string(forKey: appLangKey) == "tr" ? "turkish".localized() : "english".localized()
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "ArrowNext")
+        imageView.image = .arrowNext
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 12),
-            imageView.heightAnchor.constraint(equalToConstant: 12)
-        ])
-        
+            imageView.heightAnchor.constraint(equalToConstant: 12),
 
+        ])
         row.addArrangedSubview(title)
         row.addArrangedSubview(imageView)
         
+        NSLayoutConstraint.activate([
+            row.heightAnchor.constraint(equalToConstant: 20),
+
+        ])
+        
+        var actions = Array<UIAction>()
+        for language in languages {
+            let action = UIAction(title: language.name, image: nil) { _ in
+            Bundle.setLanguage(lang:language.key)
+            }
+            actions.append(action)
+        }
+
  
         let container = AppContainer(view: row)
         container.isUserInteractionEnabled = true
-
+        container.showsMenuAsPrimaryAction = true
+        container.menu = UIMenu(options: .displayInline, children: actions)
 
         return container
         
     }()
     
+    
+
     
     
     
@@ -114,19 +135,15 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
         viewModeRow.addArrangedSubview(appSwitch)
         let viewModeView = AppContainer(view: viewModeRow)
         
-   
+        
+    
         appTitle.delegate = self
         view.addSubview(appTitle)
         view.addSubview(viewModeView)
         view.addSubview(favoriteView)
         view.addSubview(languageView)
         
-        //Language
-        // UITapGestureRecognizer oluşturma
-          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeLang))
-          
-        languageView.addGestureRecognizer(tapGesture)
-          
+
 
 
         
@@ -153,7 +170,6 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
 
         ])
 
-        // Do any additional setup after loading the view.
     }
     
     func applyGlobalAppearance(isDarkMode: Bool) {
@@ -169,11 +185,6 @@ class AccountViewController: UIViewController, AppBarViewDelegate {
 
     }
     
-     @objc func changeLang() {
-         let lang = UserDefaults.standard.string(forKey: appLangKey)
-
-         Bundle.setLanguage(lang:lang == "tr" ? "en" : "tr")
-     }
 
 
 }

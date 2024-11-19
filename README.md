@@ -8,6 +8,8 @@ Projede MVVM ile RxSwift beraber kullanılmıştır.
 # UYGULAMA ÖZET GİF
 <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/run.gif" alt="Resim Açıklaması" width="300" height="500">
 
+<img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/language.png" alt="Resim Açıklaması" width="300" height="500">
+
 
 # KARANLIK MODU
 <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_dark.png" alt="Resim Açıklaması" width="300" height="500">  <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_dark.png" alt="Resim Açıklaması" width="300" height="500">
@@ -16,6 +18,7 @@ Projede MVVM ile RxSwift beraber kullanılmıştır.
 
 # GÜNDÜZ MODU
 <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/library_light.png" alt="Resim Açıklaması" width="300" height="500"> <img src="https://github.com/kdrgrgn/KitapKosesi/blob/main/ExampleAssets/profile_light.png" alt="Resim Açıklaması" width="300" height="500">
+
 
 
 

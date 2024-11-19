@@ -6,7 +6,7 @@
 //
 
 import UIKit
-protocol AppBarViewDelegate : UIViewController {}
+
 
 class AppBarView : UIView {
     
@@ -22,7 +22,7 @@ class AppBarView : UIView {
     
     private  let searchIcon : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "SearchIcon")
+        imageView.image = .searchIcon
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 32),

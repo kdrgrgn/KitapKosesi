@@ -44,7 +44,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
              
              // TabBarController’a navigation controller'ları ekle
              tabBarController.viewControllers = [firstNavigationController, secondNavigationController]
-        tabBarController.navigationItem.backBarButtonItem?.title = "fsdfsdf"
              
              // TabBarController'ı ana pencereye ata
              window?.rootViewController = tabBarController

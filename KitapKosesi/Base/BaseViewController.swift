@@ -12,38 +12,25 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Navigation bar ayarlarını tek bir yerde tanımlıyoruz
-        setupNavigationBar()
     }
 
-    // Navigation bar ayarlarını buraya koyuyoruz
     func setupNavigationBar() {
-        // Navigation bar appearance ayarları
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .primaryColor
 
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.textColor
-        ]
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "back".localized(), image: UIImage(systemName: "chevron.backward"), target: self, action: #selector(popView)), animated: true)
         
-        // Standart ve scrollEdge appearance için ayarları yapıyoruz
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.backItem?.backButtonTitle = "back".localized()
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-
-        // Navigation bar’ın görünür olduğunu belirliyoruz
-        self.navigationController?.navigationBar.isHidden = false
     }
     
-    // Başlık belirleme fonksiyonu
+    
+    @objc func popView() {
+        self.navigationController?.popViewController(animated: true)
+
+    }
+    
     func setTitle(_ title: String) {
+        setupNavigationBar()
         self.navigationItem.title = title
     }
     
-    // Title yukseklik alma
-    func getTitleHeight() -> CGFloat {
-        return self.navigationController?.navigationBar.frame.height ?? 44
-    }
+
 
 }

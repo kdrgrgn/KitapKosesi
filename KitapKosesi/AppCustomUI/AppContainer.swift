@@ -16,7 +16,7 @@
 import UIKit
 
 
-class AppContainer : UIView {
+class AppContainer : UIButton {
   
     init(view: UIView, padding: UIEdgeInsets = UIEdgeInsets(top: 16, left: 20, bottom: 16, right: 20)) {
         super.init(frame: .zero)

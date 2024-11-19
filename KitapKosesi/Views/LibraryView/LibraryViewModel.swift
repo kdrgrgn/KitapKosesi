@@ -9,10 +9,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class LibraryViewModel {
+class LibraryViewModel : BaseViewModel{
     let books = BehaviorSubject<[BookModel]>(value: [])
-    let homeLoading : PublishSubject<Bool> = PublishSubject()
-    let pageLoading : PublishSubject<Bool> = PublishSubject()
     var isLastPage = false
     
     

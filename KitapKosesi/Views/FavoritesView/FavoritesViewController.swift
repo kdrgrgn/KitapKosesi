@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class FavoritesViewController: BaseViewController , UIScrollViewDelegate{
+class FavoritesViewController: BaseViewController , UIScrollViewDelegate ,  AppCellOnTapDelegate{
     
-    let favoritesVM = LibraryViewModel()
+    let favoritesVM = FavoritesViewModel()
     let disposeBag = DisposeBag()
     
     
@@ -21,33 +21,23 @@ class FavoritesViewController: BaseViewController , UIScrollViewDelegate{
 
         return tableView
     }()
-    
-    private  let indicatorView : UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.hidesWhenStopped = true
-        indicator.color = .systemTextGrey
-        return indicator
-    }()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
-        favoritesVM.getBooks(isReset: true)
+        favoritesVM.getBooks()
     }
-    
-    
     
     override func setupUI() {
         setTitle("myFavorites".localized())
         favoritesList.backgroundColor = .secondaryColor
 
+
         view.addSubview(favoritesList)
         favoritesList.rx.setDelegate(self).disposed(by: disposeBag)
         favoritesList.register(FavoriteItemCell.self, forCellReuseIdentifier: FavoriteItemCell.reuseIdentifier)
-        
-        indicatorView.center = view.center
-        view.addSubview(indicatorView)
+        favoritesList.rowHeight = 108
+
         
         NSLayoutConstraint.activate([
         
@@ -62,19 +52,17 @@ class FavoritesViewController: BaseViewController , UIScrollViewDelegate{
     
     private func setupBindings(){
         
-        favoritesVM.homeLoading.bind(to: self.indicatorView.rx.isAnimating).disposed(by: disposeBag)
         
         favoritesList.rx.itemDeleted
-             .subscribe(onNext: { [weak self] indexPath in
-                 guard let self = self else { return }
+             .subscribe(onNext: { indexPath in
                  self.favoritesVM.deleteBook(at: indexPath.row)
              })
              .disposed(by: disposeBag)
         
-
         
         favoritesVM.books.bind(to: favoritesList.rx.items(cellIdentifier: FavoriteItemCell.reuseIdentifier, cellType: FavoriteItemCell.self)) {row, item, cell in
             cell.setBook = item
+            cell.delegate = self
 
         }.disposed(by: disposeBag)
 

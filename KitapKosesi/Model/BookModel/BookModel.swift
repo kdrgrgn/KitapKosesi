@@ -36,7 +36,7 @@ struct SaleInfo: Decodable {
 struct VolumeInfo: Decodable {
     let title: String?
     let authors: [String]?
-    let publisher, publishedDate, volumeInfoDescription: String?
+    let publisher, publishedDate, description: String?
     let industryIdentifiers: [IndustryIdentifier]?
     let readingModes: ReadingModes?
     let pageCount, printedPageCount: Int?

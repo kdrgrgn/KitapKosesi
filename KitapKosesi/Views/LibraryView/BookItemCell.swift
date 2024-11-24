@@ -8,7 +8,7 @@ import UIKit
 import SDWebImage
 
 class BookItemCell: UICollectionViewCell {
-    
+    weak var delegate: AppCellOnTapDelegate?
     static let reuseIdentifier = "MyCollectionViewCell"
     private var gradientLayer: CAGradientLayer?
 
@@ -54,6 +54,10 @@ class BookItemCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(label)
         applyGradientBackground()
+        
+        contentView.isUserInteractionEnabled = true
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTapCell))
+        contentView.addGestureRecognizer(recognizer)
         
         
         
@@ -106,7 +110,6 @@ class BookItemCell: UICollectionViewCell {
     }
     
     
-    
 
     // Hücre verisini ayarlamak için bir değişken
     public var setBook: BookModel! {
@@ -115,6 +118,13 @@ class BookItemCell: UICollectionViewCell {
             label.text = setBook.volumeInfo?.authors?.first ?? "Anonim"
             imageView.sd_setImage(with: URL(string: setBook.volumeInfo?.imageLinks?.smallThumbnail ?? ""))
         }
+    }
+    
+    @objc func onTapCell() {
+        let detailVC = BookDetailViewController()
+        detailVC.setBook = book?.id ?? ""
+        detailVC.hidesBottomBarWhenPushed = true
+        delegate?.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     

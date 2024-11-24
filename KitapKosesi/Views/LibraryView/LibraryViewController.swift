@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarViewDelegate{
+class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarViewDelegate, AppCellOnTapDelegate{
     
     
     var collectionView: UICollectionView!
@@ -88,6 +88,8 @@ class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarVie
         ])
         
     }
+    
+    
 
     private func setupBindings(){
         
@@ -98,9 +100,8 @@ class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarVie
         
         libraryVM.books.bind(to: collectionView.rx.items(cellIdentifier: BookItemCell.reuseIdentifier, cellType: BookItemCell.self)) {row, item, cell in
             cell.setBook = item
-
+            cell.delegate = self
         }.disposed(by: disposeBag)
-
 
     }
     

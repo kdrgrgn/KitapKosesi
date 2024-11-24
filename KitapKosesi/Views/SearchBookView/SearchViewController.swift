@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: BaseViewController, UIScrollViewDelegate{
+class SearchViewController: BaseViewController, UIScrollViewDelegate, AppCellOnTapDelegate{
     
     
     var collectionView: UICollectionView!
@@ -131,6 +131,7 @@ class SearchViewController: BaseViewController, UIScrollViewDelegate{
         
         searchVM.books.bind(to: collectionView.rx.items(cellIdentifier: BookItemCell.reuseIdentifier, cellType: BookItemCell.self)) {row, item, cell in
             cell.setBook = item
+            cell.delegate = self
 
         }.disposed(by: disposeBag)
 

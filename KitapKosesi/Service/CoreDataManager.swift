@@ -1,5 +1,5 @@
 //
-//  CoreDataHelper.swift
+//  CoreDataManager.swift
 //  KitapKosesi
 //
 //  Created by Kadir on 24.11.2024.
@@ -9,21 +9,23 @@
 import UIKit
 import CoreData
 
-class CoreDataHelper {
-    static let shared = CoreDataHelper()
+class CoreDataManager {
+    static let shared = CoreDataManager()
     
-    private lazy var mainManagedObjectContext: NSManagedObjectContext = {
+    // Ana managed object context. Bu context uygulama veritabanı ile etkileşimde bulunur.
+    private  lazy var mainManagedObjectContext: NSManagedObjectContext = {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }()
     
-    private lazy var privateManagedObjectContext: NSManagedObjectContext = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    // Özel (private) managed object context. Bu context, arka planda işlem yaparak ana context ile veri senkronizasyonu sağlar.
+     lazy var privateManagedObjectContext: NSManagedObjectContext = {
         let privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         privateContext.parent = mainManagedObjectContext
         return privateContext
     }()
     
+    // Ana context'in değişikliklerini kaydetme işlemi
     private func saveMainContext() {
         if mainManagedObjectContext.hasChanges {
             do {
@@ -34,6 +36,7 @@ class CoreDataHelper {
         }
     }
     
+    // Özel context'in değişikliklerini kaydetme işlemi
     private func savePrivateContext() {
         if privateManagedObjectContext.hasChanges {
             do {
@@ -44,6 +47,7 @@ class CoreDataHelper {
         }
     }
     
+    // Değişiklikleri kaydetme işlemini iki context'te yapar.
     private func saveChanges() {
         savePrivateContext()
         mainManagedObjectContext.performAndWait {
@@ -51,55 +55,49 @@ class CoreDataHelper {
         }
     }
     
-    /*private func mergeChangesFromPrivateContext() {
-        mainManagedObjectContext.performAndWait {
-            do {
-                try mainManagedObjectContext.save()
-            } catch {
-                print("Error saving main managed object context after merging changes: \(error)")
-            }
-        }
-    }*/
-    
+    // Verileri kaydetme fonksiyonu
     func saveData<T: NSManagedObject>(objects: [T]) {
+        print("Kaydetmeye giriyorr")
         privateManagedObjectContext.perform {
-            // Insert the objects into the private context
+            // Veriler özel context'e eklenir.
             for object in objects {
                 self.privateManagedObjectContext.insert(object)
             }
             
-            // Save changes to the private context and merge to the main context
+            // Değişiklikler kaydedilir ve ana context'e aktarılır.
             self.saveChanges()
         }
     }
     
+    // Verileri güncelleme fonksiyonu
     func updateData<T: NSManagedObject>(objects: [T]) {
         privateManagedObjectContext.perform {
-            // Update the objects in the private context
+            // Veriler özel context'te güncellenir.
             for object in objects {
                 if object.managedObjectContext == self.privateManagedObjectContext {
-                    // If the object is already in the private context, update it directly
+                    // Eğer nesne zaten özel context'te ise, doğrudan güncellenir.
                     object.managedObjectContext?.refresh(object, mergeChanges: true)
                 } else {
-                    // If the object is not in the private context, fetch and update it
+                    // Eğer nesne özel context'te değilse, önce veritabanından çekilip güncellenir.
                     let fetchRequest = NSFetchRequest<T>(entityName: object.entity.name!)
                     fetchRequest.predicate = NSPredicate(format: "SELF == %@", object)
                     fetchRequest.fetchLimit = 1
                     
                     if let fetchedObject = try? self.privateManagedObjectContext.fetch(fetchRequest).first {
-                        fetchedObject.setValuesForKeys(object.dictionaryWithValues(forKeys: object.entity.attributesByName.keys.map { $0.rawValue }))
+                        fetchedObject.setValuesForKeys(object.dictionaryWithValues(forKeys: object.entity.attributesByName.keys.map { $0 }))
                     }
                 }
             }
             
-            // Save changes to the private context and merge to the main context
+            // Değişiklikler kaydedilir ve ana context'e aktarılır.
             self.saveChanges()
         }
     }
     
+    // Verileri silme fonksiyonu
     func deleteData<T: NSManagedObject>(objects: [T]) {
         privateManagedObjectContext.perform {
-            // Delete the objects from the private context
+            // Veriler özel context'ten silinir.
             for object in objects {
                 if object.managedObjectContext == self.privateManagedObjectContext {
                     self.privateManagedObjectContext.delete(object)
@@ -110,8 +108,34 @@ class CoreDataHelper {
                 }
             }
             
-            // Save changes to the private context and merge to the main context
+            // Değişiklikler kaydedilir ve ana context'e aktarılır.
             self.saveChanges()
         }
     }
+    
+    func fetchAllData<T: NSManagedObject>(entity: T.Type) -> [T]? {
+        let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entity))
+        
+        do {
+            let result = try mainManagedObjectContext.fetch(fetchRequest)
+            return result
+        } catch {
+            print("Error fetching all data for entity \(String(describing: entity)): \(error)")
+            return []
+        }
+    }
+    
+    func fetchObjectById<T: NSManagedObject>(entity: T.Type, id: String) -> T? {
+        let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entity))
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id) // id'yi kontrol et
+
+        do {
+            let result = try mainManagedObjectContext.fetch(fetchRequest)
+            return result.first // İlk eşleşen nesneyi döndür
+        } catch {
+            print("Error fetching object with id \(id): \(error)")
+            return nil
+        }
+    }
+    
 }

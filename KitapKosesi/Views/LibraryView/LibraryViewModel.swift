@@ -73,14 +73,6 @@ class LibraryViewModel : BaseViewModel{
         
     }
     
-    func deleteBook(at index: Int) {
-      
-        if  var currentBooks = try? self.books.value() {
-            currentBooks.remove(at: index)
-            self.books.on(.next(currentBooks))
 
-        }
-
-    }
     
 }

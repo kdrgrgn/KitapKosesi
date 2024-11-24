@@ -8,26 +8,32 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import CoreData
 
 class FavoritesViewModel : BaseViewModel{
-    let books = BehaviorSubject<[BookModel]>(value: [])
+    let books = BehaviorSubject<[CDBook]>(value: [])
     
     
     
     
     
     func getBooks (){
-        
-        
-
-
-            self.homeLoading.onNext(true)
-
     
-
+            let newBooks =  CoreDataManager.shared.fetchAllData(entity: CDBook.self) ?? []
+            books.onNext(newBooks)
     }
     
-    
+    func deleteBook(at index: Int) {
+      
+        if  var currentBooks = try? self.books.value() {
+            CoreDataManager.shared.deleteData(objects: [currentBooks[index]])
+            currentBooks.remove(at: index)
+            self.books.on(.next(currentBooks))
+            
+
+        }
+
+    }
 
     
 }

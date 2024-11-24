@@ -11,9 +11,9 @@ import SDWebImage
 class FavoriteItemCell: UITableViewCell {
     
     static let reuseIdentifier = "FavoriteItemCell"
-
+    weak var delegate : AppCellOnTapDelegate?
     
-    var book : BookModel?
+    var book : CDBook?
     
     let bookNameLabel: UILabel = {
         let lbl = AppLabel(style: .body)
@@ -52,7 +52,7 @@ class FavoriteItemCell: UITableViewCell {
     let imageViewCell: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 4
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleToFill
         image.clipsToBounds = true // Resmin taşmaması için
         image.translatesAutoresizingMaskIntoConstraints = false
         
@@ -60,7 +60,6 @@ class FavoriteItemCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             image.widthAnchor.constraint(equalToConstant: 50),
-            image.heightAnchor.constraint(equalToConstant: 75),
 
         ])
 
@@ -82,14 +81,17 @@ class FavoriteItemCell: UITableViewCell {
         let container = AppContainer(view: infoRow,padding: UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12))
         
         self.contentView.addSubview(container)
-        
+        contentView.isUserInteractionEnabled = true
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTapCell))
+        contentView.addGestureRecognizer(recognizer)
 
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8),
             container.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 20),
             container.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,constant: -20),
             container.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8),
-      
+            
+
         ])    }
     
     required init?(coder: NSCoder) {
@@ -100,19 +102,25 @@ class FavoriteItemCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+   
     }
     
     // Hücre verisini ayarlamak için bir değişken
-    public var setBook: BookModel! {
+    public var setBook: CDBook! {
         didSet {
             self.book = setBook
-            authorLabel.text = setBook.volumeInfo?.authors?.first ?? "Anonim"
-            bookNameLabel.text = setBook.volumeInfo?.title ?? ""
+            authorLabel.text = setBook.author ?? "Anonim"
+            bookNameLabel.text = setBook.title ?? ""
 
-            imageViewCell.sd_setImage(with: URL(string: setBook.volumeInfo?.imageLinks?.smallThumbnail ?? ""))
+            imageViewCell.sd_setImage(with: URL(string: setBook.image ?? ""))
         }
+    }
+    
+    @objc func onTapCell() {
+        let detailVC = BookDetailViewController()
+        detailVC.setBook = book?.id ?? ""
+        detailVC.hidesBottomBarWhenPushed = true
+        delegate?.navigationController?.pushViewController(detailVC, animated: true)
     }
     
 

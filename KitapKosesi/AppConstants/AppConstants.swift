@@ -7,8 +7,8 @@
 
 import UIKit
 
-var  darkModeKey = "isDarkModeKey"
-var  appLangKey = "appLangKey"
+let  darkModeKey = "isDarkModeKey"
+let  appLangKey = "appLangKey"
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
 

@@ -1,7 +1,8 @@
 Kitap Köşesi uygulamam google books apilerini kullanarak kullancıcılara aradıkları kitapları göstermeyi hedefliyor.
 Uygulama içinde karanlık moda geçiş yapılabilir.
-Uygulama İngilizce ve Türkçe desteği mevcuttur.
-Core Data ile kitapları lokale kaydetme mevcuttur.
+Uygulama İngilizce ve Türkçe desteği mevcuttur.  
+
+Core Data ile kitapları lokal veri tabanına kaydetme mevcuttur. Mümkün olduğunca clean code yazmaya dikkat ettim.Önerileriniz olursa geri dönüş yapmaktan lütfen çekinmeyin
 Projede MVVM ile RxSwift beraber kullanılmıştır.
 
 

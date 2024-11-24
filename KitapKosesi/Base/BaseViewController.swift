@@ -11,7 +11,10 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .secondaryColor
+        setupUI() // Her alt sınıfta setupUI çağrılacak
+
+
     }
 
     func setupNavigationBar() {
@@ -31,6 +34,9 @@ class BaseViewController: UIViewController {
         self.navigationItem.title = title
     }
     
-
+    /// Alt sınıflarda override edilmesi zorunlu bir metod
+      func setupUI() {
+          fatalError("setupUI() has not been implemented. Override this method in your subclass.")
+      }
 
 }

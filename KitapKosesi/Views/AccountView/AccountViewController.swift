@@ -25,23 +25,15 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
         
         let imageView = UIImageView()
         imageView.image = .arrowNext
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 12),
-            imageView.heightAnchor.constraint(equalToConstant: 12)
-        ])
-        
 
         favoriteRow.addArrangedSubview(title)
         favoriteRow.addArrangedSubview(imageView)
-        
-        NSLayoutConstraint.activate([
-            favoriteRow.heightAnchor.constraint(equalToConstant: 20),
-
-        ])
  
         let container = AppContainer(view: favoriteRow)
+        container.isUserInteractionEnabled = true
+   
 
         return container
         
@@ -62,19 +54,13 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
         let imageView = UIImageView()
         imageView.image = .arrowNext
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
 
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 12),
-            imageView.heightAnchor.constraint(equalToConstant: 12),
-
-        ])
+     
         row.addArrangedSubview(title)
         row.addArrangedSubview(imageView)
         
-        NSLayoutConstraint.activate([
-            row.heightAnchor.constraint(equalToConstant: 20),
-
-        ])
+    
         
         var actions = Array<UIAction>()
         for language in languages {
@@ -96,8 +82,7 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
     
     
 
-    
-    
+
     
     
     private  let viewModeRow : UIStackView = {
@@ -117,8 +102,13 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .secondaryColor
         
+
+
+    }
+    
+    
+    override func setupUI() {
         //DARK MODE
         let title = AppLabel(style: .body)
         let isDarkMode = UserDefaults.standard.bool(forKey: darkModeKey)
@@ -135,7 +125,8 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
         viewModeRow.addArrangedSubview(appSwitch)
         let viewModeView = AppContainer(view: viewModeRow)
         
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(directFavorites))
+        favoriteView.addGestureRecognizer(tapGesture)
     
         appTitle.delegate = self
         view.addSubview(appTitle)
@@ -169,8 +160,8 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
             
 
         ])
-
     }
+    
     
     func applyGlobalAppearance(isDarkMode: Bool) {
         // Bağlanan tüm sahneleri al
@@ -182,6 +173,11 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
         if let window = windowScene.windows.first {
             window.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
         }
+
+    }
+    
+    @objc func directFavorites() {
+        self.navigationController?.pushViewController(FavoritesViewController(), animated: true)
 
     }
     

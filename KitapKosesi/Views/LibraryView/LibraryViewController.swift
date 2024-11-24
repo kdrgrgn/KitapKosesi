@@ -51,6 +51,11 @@ class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupBindings()
+        libraryVM.getBooks()
+    }
+    override func setupUI() {
         appTitle.delegate = self
         view.addSubview(appTitle)
 
@@ -58,12 +63,14 @@ class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarVie
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         collectionView.register(BookItemCell.self, forCellWithReuseIdentifier: BookItemCell.reuseIdentifier)
+        collectionView.backgroundColor = .secondaryColor
+
         view.addSubview(collectionView)
 
         
         indicatorView.center = view.center
         view.addSubview(indicatorView)
-        paginationIndicatorView.frame = CGRect(x:screenWidth/2 - 12, y: screenHeight - 125 , width: 24, height: 24)  
+        paginationIndicatorView.frame = CGRect(x:screenWidth/2 - 12, y: screenHeight - 125 , width: 24, height: 24)
         view.addSubview(paginationIndicatorView)
         
         NSLayoutConstraint.activate([
@@ -76,14 +83,10 @@ class LibraryViewController: BaseViewController, UIScrollViewDelegate, AppBarVie
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-//            paginationIndicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100),
-//            paginationIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  20),
-//            paginationIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
             
         ])
         
-        setupBindings()
-        libraryVM.getBooks()
     }
 
     private func setupBindings(){

@@ -64,6 +64,11 @@ class SearchViewController: BaseViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        setupBindings()
+    }
+    
+    override func setupUI() {
         setTitle("findYourBook".localized())
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: bookListLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,8 +99,8 @@ class SearchViewController: BaseViewController, UIScrollViewDelegate{
 
             
         ])
-        setupBindings()
     }
+    
 
     private func setupBindings(){
         

@@ -9,35 +9,42 @@ import XCTest
 
 final class KitapKosesiUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testAddFavorite() throws {
+        print("Test calisiyor")
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        let indicator = app.activityIndicators["indicatorView"]
+        // indicator gorunur olmamasi bekleniyor
+             let existsPredicate = NSPredicate(format: "exists == false")
+             expectation(for: existsPredicate, evaluatedWith: indicator, handler: nil)
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+             // indicatorun durmasını bekliyoruz
+             waitForExpectations(timeout: 10) { error in
+                 if let error = error {
+                     XCTFail("Indicator stop olmadı: \(error.localizedDescription)")
+                 }
+             }
 
-    @MainActor
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+        // Hücreye tikla
+        let collectionViewCell = app.collectionViews.cells.element(boundBy: 3)
+        XCTAssertTrue(collectionViewCell.exists, "3. hücre bulunamadı.")
+        collectionViewCell.tap()
+
+        // Favori eklemeye tikla
+        let addFavoritesButton = app.buttons["Add Favorites"]
+        if addFavoritesButton.exists {
+            addFavoritesButton.tap()
+        } else{
+            print("Favori butonu bulunamadi. Beklendik bir durum")
         }
+        
+        // Geri Git
+        let backButton = app.navigationBars.buttons["Back"]
+        
+        XCTAssertTrue(backButton.exists, "Geri butonu bulunamadı.")
+        backButton.tap()
     }
+
 }
+

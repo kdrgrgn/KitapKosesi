@@ -13,9 +13,28 @@
 		13DA9D382CE8DD48002FB65F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13DA9D372CE8DD48002FB65F /* SDWebImage */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		13D7499B2CF6503B0061EB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 13E6C08B2CE3DE4500D758F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13E6C0922CE3DE4500D758F5;
+			remoteInfo = KitapKosesi;
+		};
+		13D749AA2CF650600061EB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 13E6C08B2CE3DE4500D758F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13E6C0922CE3DE4500D758F5;
+			remoteInfo = KitapKosesi;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		134E4B1B2CEA52F90001D32B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		134E4B232CEA54690001D32B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		13D749972CF6503B0061EB18 /* KitapKosesiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitapKosesiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13D749A42CF650600061EB18 /* KitapKosesiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KitapKosesiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E6C0932CE3DE4500D758F5 /* KitapKosesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitapKosesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -35,6 +54,16 @@
 			path = ExampleAssets;
 			sourceTree = "<group>";
 		};
+		13D749982CF6503B0061EB18 /* KitapKosesiTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KitapKosesiTests;
+			sourceTree = "<group>";
+		};
+		13D749A52CF650600061EB18 /* KitapKosesiUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KitapKosesiUITests;
+			sourceTree = "<group>";
+		};
 		13E6C0952CE3DE4500D758F5 /* KitapKosesi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -46,6 +75,20 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		13D749942CF6503B0061EB18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13D749A12CF650600061EB18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13E6C0902CE3DE4500D758F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -65,6 +108,8 @@
 				13CF69BC2CEA7E72009D5815 /* ExampleAssets */,
 				134E4B1A2CEA52F90001D32B /* Localizable.strings */,
 				13E6C0952CE3DE4500D758F5 /* KitapKosesi */,
+				13D749982CF6503B0061EB18 /* KitapKosesiTests */,
+				13D749A52CF650600061EB18 /* KitapKosesiUITests */,
 				13E6C0942CE3DE4500D758F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				13E6C0932CE3DE4500D758F5 /* KitapKosesi.app */,
+				13D749972CF6503B0061EB18 /* KitapKosesiTests.xctest */,
+				13D749A42CF650600061EB18 /* KitapKosesiUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +127,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		13D749962CF6503B0061EB18 /* KitapKosesiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13D7499F2CF6503B0061EB18 /* Build configuration list for PBXNativeTarget "KitapKosesiTests" */;
+			buildPhases = (
+				13D749932CF6503B0061EB18 /* Sources */,
+				13D749942CF6503B0061EB18 /* Frameworks */,
+				13D749952CF6503B0061EB18 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13D7499C2CF6503B0061EB18 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				13D749982CF6503B0061EB18 /* KitapKosesiTests */,
+			);
+			name = KitapKosesiTests;
+			packageProductDependencies = (
+			);
+			productName = KitapKosesiTests;
+			productReference = 13D749972CF6503B0061EB18 /* KitapKosesiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13D749A32CF650600061EB18 /* KitapKosesiUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13D749AC2CF650600061EB18 /* Build configuration list for PBXNativeTarget "KitapKosesiUITests" */;
+			buildPhases = (
+				13D749A02CF650600061EB18 /* Sources */,
+				13D749A12CF650600061EB18 /* Frameworks */,
+				13D749A22CF650600061EB18 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13D749AB2CF650600061EB18 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				13D749A52CF650600061EB18 /* KitapKosesiUITests */,
+			);
+			name = KitapKosesiUITests;
+			packageProductDependencies = (
+			);
+			productName = KitapKosesiUITests;
+			productReference = 13D749A42CF650600061EB18 /* KitapKosesiUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		13E6C0922CE3DE4500D758F5 /* KitapKosesi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13E6C0A92CE3DE4700D758F5 /* Build configuration list for PBXNativeTarget "KitapKosesi" */;
@@ -116,6 +209,14 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					13D749962CF6503B0061EB18 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 13E6C0922CE3DE4500D758F5;
+					};
+					13D749A32CF650600061EB18 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 13E6C0922CE3DE4500D758F5;
+					};
 					13E6C0922CE3DE4500D758F5 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -141,11 +242,27 @@
 			projectRoot = "";
 			targets = (
 				13E6C0922CE3DE4500D758F5 /* KitapKosesi */,
+				13D749962CF6503B0061EB18 /* KitapKosesiTests */,
+				13D749A32CF650600061EB18 /* KitapKosesiUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		13D749952CF6503B0061EB18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13D749A22CF650600061EB18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13E6C0912CE3DE4500D758F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +274,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		13D749932CF6503B0061EB18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13D749A02CF650600061EB18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13E6C08F2CE3DE4500D758F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,6 +296,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		13D7499C2CF6503B0061EB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13E6C0922CE3DE4500D758F5 /* KitapKosesi */;
+			targetProxy = 13D7499B2CF6503B0061EB18 /* PBXContainerItemProxy */;
+		};
+		13D749AB2CF650600061EB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13E6C0922CE3DE4500D758F5 /* KitapKosesi */;
+			targetProxy = 13D749AA2CF650600061EB18 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		134E4B1A2CEA52F90001D32B /* Localizable.strings */ = {
@@ -179,6 +323,76 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		13D7499D2CF6503B0061EB18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9Y73787R68;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kadirgorgun.KitapKosesiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KitapKosesi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KitapKosesi";
+			};
+			name = Debug;
+		};
+		13D7499E2CF6503B0061EB18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9Y73787R68;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kadirgorgun.KitapKosesiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KitapKosesi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KitapKosesi";
+			};
+			name = Release;
+		};
+		13D749AD2CF650600061EB18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9Y73787R68;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kadirgorgun.KitapKosesiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KitapKosesi;
+			};
+			name = Debug;
+		};
+		13D749AE2CF650600061EB18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9Y73787R68;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kadirgorgun.KitapKosesiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KitapKosesi;
+			};
+			name = Release;
+		};
 		13E6C0AA2CE3DE4700D758F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,6 +579,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		13D7499F2CF6503B0061EB18 /* Build configuration list for PBXNativeTarget "KitapKosesiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13D7499D2CF6503B0061EB18 /* Debug */,
+				13D7499E2CF6503B0061EB18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13D749AC2CF650600061EB18 /* Build configuration list for PBXNativeTarget "KitapKosesiUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13D749AD2CF650600061EB18 /* Debug */,
+				13D749AE2CF650600061EB18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		13E6C08E2CE3DE4500D758F5 /* Build configuration list for PBXProject "KitapKosesi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

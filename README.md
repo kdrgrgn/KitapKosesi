@@ -4,6 +4,7 @@ Uygulama İngilizce ve Türkçe desteği mevcuttur.
 
 Core Data ile kitapları lokal veri tabanına kaydetme mevcuttur. Mümkün olduğunca clean code yazmaya dikkat ettim.Önerileriniz olursa geri dönüş yapmaktan lütfen çekinmeyin
 Projede MVVM ile RxSwift beraber kullanılmıştır.
+Uygulamada UI test ve unit test yazılmıştır.Bu testler ilerleyen zamanlarda daha da genişletilecektir.
 
 
 
@@ -33,5 +34,4 @@ Projede MVVM ile RxSwift beraber kullanılmıştır.
 
 
 # GELECEK ÖZELLİKLER
-* Uygulama geneli test yazımı
 * Hataları loglama için entegrasyon

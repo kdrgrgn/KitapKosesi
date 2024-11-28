@@ -68,6 +68,11 @@ class SearchViewController: BaseViewController, UIScrollViewDelegate, AppCellOnT
         setupBindings()
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        searchVM.resetPagination()
+    }
+    
     override func setupUI() {
         setTitle("findYourBook".localized())
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: bookListLayout)

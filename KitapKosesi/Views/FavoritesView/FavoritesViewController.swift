@@ -28,6 +28,15 @@ class FavoritesViewController: BaseViewController , UIScrollViewDelegate ,  AppC
         favoritesVM.getBooks()
     }
     
+
+    
+
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        favoritesVM.clearData()
+    }
+   
+    
     override func setupUI() {
         setTitle("myFavorites".localized())
         favoritesList.backgroundColor = .secondaryColor

@@ -49,6 +49,11 @@ class BookDetailViewModel : BaseViewModel{
     }
     
     
+    func  clearData(){
+        book.onNext(nil)
+        
+    }
+    
 
 
     

@@ -62,6 +62,11 @@ class BookDetailViewController: BaseViewController {
         setupBindings()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        bookDetailVM.clearData()
+    }
+    
+    
     private func setupBindings(){
         
         bookDetailVM.homeLoading.bind(to: self.indicatorView.rx.isAnimating).disposed(by: disposeBag)

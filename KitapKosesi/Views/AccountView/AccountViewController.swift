@@ -96,10 +96,6 @@ class AccountViewController: BaseViewController, AppBarViewDelegate {
         return row
         
     }()
-    
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

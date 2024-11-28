@@ -34,6 +34,12 @@ class FavoritesViewModel : BaseViewModel{
         }
 
     }
+    
+    func  clearData(){
+        books.onNext([])
+        
+    }
+    
 
     
 }
